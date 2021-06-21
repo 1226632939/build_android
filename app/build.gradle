@@ -1,0 +1,133 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.example.androidlearning"
+        minSdkVersion	 rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        versionCode rootProject.ext.versionCode
+        //versionName rootProject.ext.versionName
+        multiDexEnabled true
+    }
+
+//    // 配置签名
+//    signingConfigs{
+//        snakeV2{
+//            storeFile file(rootProject.ext.signingConfigs.storeFile)
+//            storePassword rootProject.ext.signingConfigs.storePassword
+//            keyAlias rootProject.ext.signingConfigs.keyAlias
+//            keyPassword rootProject.ext.signingConfigs.keyPassword
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+//    }
+//
+//    splits
+//            {
+//                // 基于 ABI 配置多个 APK。
+//                abi {
+//                    enable true
+//                    // 重置 ABI列表为只包含一个空字符串（这可以实现，在与 include一起使用来可以表示要使用哪一个ABI，而不是要忽略哪一些ABI）
+//                    reset()
+//                    def tempPath = file('../temp').absolutePath
+//                    // 指定 Gradle 应为其创建 APK 的 ABI 列表。
+//                    include CheckAbi(tempPath)
+//                    // 指定我们还希望生成一个包含所有 ABI 的通用 APK。
+//                    universalApk false
+//                }
+//            }
+
+
+    // 动态配置渠道包名 与签名设置 还有manifest中的渠道标签
+    productFlavors{
+        official{
+            // 设置出包的时候的包名
+            applicationId 'com.xw.test.off'
+            // 设置签名
+
+            // 设置manifest中的渠道缩写
+            manifestPlaceholders = [CHANNEL_NAME:"OFFICIAL", CHANNEL_TYPE:rootProject.ext.PlatformId.OFFICIAL]
+
+            multiDexEnabled true
+        }
+        oppo{
+            applicationId 'com.xw.test.off'
+
+            manifestPlaceholders = [CHANNEL_NAME:"OFFICIAL", CHANNEL_TYPE:rootProject.ext.PlatformId.OFFICIAL]
+            multiDexEnabled true
+        }
+        quick{
+            applicationId 'com.xw.test.off'
+
+            manifestPlaceholders = [CHANNEL_NAME:"OFFICIAL", CHANNEL_TYPE:rootProject.ext.PlatformId.OFFICIAL]
+            multiDexEnabled true
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile "../public/main/AndroidManifest.xml"
+            assets.srcDirs += ["../public/main/assets"]
+            java.srcDirs = ["../public/main/java"]
+            res.srcDirs += ['../public/main/res']
+            jniLibs.srcDirs += ["../public/main/jniLibs"]
+        }
+        main {
+            def resPath = file('../unityRelease').absolutePath
+        }
+        official{
+            manifest.srcFile "../platform/official/AndroidManifest.xml"
+            assets.srcDirs += ["../platform/official/assets"]
+            java.srcDirs = ["../platform/official/java"]
+            res.srcDirs += ['../platform/official/res']
+            jniLibs.srcDirs += ["../platform/official/jniLibs"]
+        }
+        oppo{
+            manifest.srcFile "../platform/oppo/AndroidManifest.xml"
+            assets.srcDirs += ["../platform/oppo/assets"]
+            java.srcDirs = ["../platform/oppo/java"]
+            res.srcDirs += ['../platform/oppo/res']
+            jniLibs.srcDirs += ["../platform/oppo/jniLibs"]
+        }
+        quick{
+            manifest.srcFile "../platform/quick/AndroidManifest.xml"
+            assets.srcDirs += ["../platform/quick/assets"]
+            java.srcDirs = ["../platform/quick/java"]
+            res.srcDirs += ['../platform/quick/res']
+            jniLibs.srcDirs += ["../platform/quick/jniLibs"]
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
