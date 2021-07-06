@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.haoxin.sanguo.TestActivity"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/init"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="初始化" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="支付" />
+
+    <Button
+        android:id="@+id/pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/loadLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登陆上报" />
+
+    <Button
+        android:id="@+id/loadUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="升级上报" />
+
+    <Button
+        android:id="@+id/loadRes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册上报" />
+</LinearLayout>

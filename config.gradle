@@ -1,15 +1,15 @@
 ext{
     UnityVersion = ''
 
-    versionCode = 110
-    versionName = '1.1.0'
+    androidversionCode = 110
+    androidversionName = '1.1.0'
 
     // Android API 配置
-    android = [
-            compileSdkVersion: 28,
-            buildToolsVersion: '29.0.2',  //minimum supported version (28.0.2) for Android Gradle Plugin 4.0.1.
-            minSdkVersion    : 16,
-            targetSdkVersion : 26,
+    androidApi = [
+            androidcompileSdkVersion: 28,
+            androidbuildToolsVersion: '29.0.2',  //minimum supported version (28.0.2) for Android Gradle Plugin 4.0.1.
+            androidminSdkVersion    : 16,
+            androidtargetSdkVersion : 26,
     ]
 
     PlatformId = [
@@ -17,11 +17,5 @@ ext{
             OFFICIAL : 1,
             OPPO : 2,
             QUICK : 3,
-    ]
-    signingConfigs = [
-            storeFile : '../Signer/snake.keystore' ,// keyStore 路径，最好放在当前工程目录下
-            storePassword:'bairimengsnake', // keyStore 密钥库密码
-            keyAlias:'snake.keystore', // keyStore 别名
-            keyPassword:'bairimengsnake', // 别名密码
     ]
 }

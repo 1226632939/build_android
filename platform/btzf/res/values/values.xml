@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="title_bar_bg_band_color">#e0e0e0</color>
+    <color name="title_bar_bg_color">#3cbd51</color>
+    <color name="xygame_float_menu_item_color">#00000000</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="dialog_corners">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <string name="app_name">三国无双</string>
+    <style name="dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <style name="float_item_style">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">45.0dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">50.0dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5.0dip</item>
+        <item name="android:paddingTop">5.0dip</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">10.0sp</item>
+    </style>
+</resources>
