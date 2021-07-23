@@ -29,25 +29,26 @@ android {
         noCompress = ['.unity3d', '.ress', '.resource', '.obb', '.gitignore', 'test.xml', 'bundles/bundle-list.json', 'bundles/optional-bundle-list.csv', 'bundles/ver']
     }
 
-    // 配置签名
-    signingConfigs{
-        singv1 {
-            storeFile file('signer/snake.keystore')
-            storePassword 'bairimengsnake'
-            keyAlias 'snake.keystore'
-            keyPassword 'bairimengsnake'
-            v1SigningEnabled true
-            v2SigningEnabled false
-        }
-        singv2 {
-            storeFile file('signer/snake.keystore')
-            storePassword 'bairimengsnake'
-            keyAlias 'snake.keystore'
-            keyPassword 'bairimengsnake'
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-    }
+//// 配置签名
+//signingConfigs
+//{
+//    singv1 {
+//        storeFile file('signer/***.keystore')
+//            storePassword '******'
+//            keyAlias '***.keystore'
+//            keyPassword 'bairimengsnake'
+//            v1SigningEnabled true
+//            v2SigningEnabled false
+//        }
+//    singv2 {
+//        storeFile file('signer/***.keystore')
+//            storePassword '******'
+//            keyAlias '***.keystore'
+//            keyPassword '***'
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+//}
 //
 //    splits {
 //                // 基于 ABI 配置多个 APK。
