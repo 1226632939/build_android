@@ -19,6 +19,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
+
 /**
  * @author ：水泥蛋子
  * @date ：Created in 2021/6/28 17:15
@@ -39,10 +41,13 @@ public class OutputLogTool {
     private String android_log_path = "";
     private String TAG = "OutputLogTool";
 
+    private boolean is_initPath = false;
 
     private static OutputPreCallback m_outPreCallback;
 
     private static OutputLogTool m_instance = new OutputLogTool();
+
+    private Context m_context;
 
     public static OutputLogTool getInstance() {
         return m_instance;
@@ -55,10 +60,20 @@ public class OutputLogTool {
         void prefection();
     }
 
-    public void init(Context context) {
+    public void init(Context context){
+        m_context = context;
         pid = android.os.Process.myPid();
-        game_log_path = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES).getParent() + File.separator + "game_log.txt";
-        android_log_path = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES).getParent() + File.separator + "android_log.txt";
+    }
+
+    public void initPath(Context context) {
+        String path = Objects.requireNonNull(context.getExternalFilesDir(Environment.DIRECTORY_MOVIES)).getParent();
+        if (path.equals("")){
+            Log.e(TAG," output log tool initialization failed !!! ");
+            return;
+        }
+        game_log_path = path + File.separator + "game_log.txt";
+        android_log_path = path + File.separator + "android_log.txt";
+        is_initPath = true;
     }
 
     public int getPid() {
@@ -85,6 +100,11 @@ public class OutputLogTool {
      * 切换Activity打印日志
      */
     public void switchActivity(final Activity activity) {
+        if (!is_initPath){
+            Log.e(TAG,"Not initialized path!!! ");
+            initPath(m_context);
+            return;
+        }
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -100,6 +120,11 @@ public class OutputLogTool {
      * 启动输出Android日志线程
      */
     public void getAndroidLog(int m_pid, String path) {
+        if (!is_initPath){
+            Log.e(TAG,"Not initialized path!!! ");
+            initPath(m_context);
+            return;
+        }
         Log.i(TAG,"start output android log thread");
         SaveLogInfoThread m_locatOutputThread = new SaveLogInfoThread(m_pid, path);
         m_locatOutputThread.start();
@@ -109,6 +134,11 @@ public class OutputLogTool {
      * 启动输入崩溃日志线程
      */
     public void getErrorLog(String path, Throwable ex) {
+        if (!is_initPath){
+            Log.e(TAG,"Not initialized path!!! ");
+            initPath(m_context);
+            return;
+        }
         Log.i(TAG,"start output game log thread");
         SaveLogInfoThread logThread = new SaveLogInfoThread(SAVE_ERROR_LOG, path, ex);
         logThread.start();
